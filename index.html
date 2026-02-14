@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever Megha ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-red: radial-gradient(circle, #b10000, #2b0000); }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-serif; background: var(--bg-red); color: white; overflow-x: hidden; scroll-behavior: smooth; }
+        .screen { display: none; width: 100%; min-height: 100vh; justify-content: center; align-items: center; flex-direction: column; position: absolute; text-align: center; padding: 20px; box-sizing: border-box; }
+        .active { display: flex; animation: fadeIn 1s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .btn { background: #ff4d4d; color: white; padding: 12px 25px; border: 2px solid white; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        img { max-width: 90%; border-radius: 15px; }
+
+        /* 14 Feb Calendar */
+        .calendar { background: white; color: #b10000; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        #no-btn { position: relative; transition: 0.1s; background: #333; }
+
+        /* Letter Styling */
+        .letter-box { background: rgba(255, 255, 255, 0.95); color: #333; padding: 25px; border-radius: 10px; max-width: 400px; text-align: left; line-height: 1.6; position: relative; }
+        .urdu-lines { color: #b10000; font-family: serif; font-weight: bold; font-style: italic; border-top: 1px solid #ddd; margin-top: 15px; padding-top: 10px; }
+
+        /* Tickets */
+        .tickets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .sticker { width: 100px; cursor: pointer; animation: float 3s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Gift Overlays */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto; padding: 40px 20px; }
+        .close-btn { position: fixed; top: 20px; right: 20px; font-size: 35px; color: white; cursor: pointer; }
+        .art-img { display: none; width: 280px; margin: auto; }
+        .reason-scroll { height: 300px; overflow-y: auto; text-align: left; padding: 15px; background: #333; border-radius: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop><source src="song.mp3" type="audio/mpeg"></audio>
+
+    <!-- 1. Front Page -->
+    <div id="page1" class="screen active">
+        <img src="front.jpg" onclick="start()" style="cursor: pointer; animation: pulse 2s infinite;">
+        <p style="margin-top:15px;">Click the card for Megha ❤️</p>
+    </div>
+
+    <!-- 2. Flowers Page -->
+    <div id="page2" class="screen">
+        <h1 style="font-family: 'Dancing Script'; font-size: 40px;">Flowers For You</h1>
+        <div style="background:white; color:black; padding:10px; border-radius:10px; margin:5px;">I will always love you no matter what</div>
+        <img src="roses.png" style="width: 250px; margin: 20px 0;">
+        <div style="background:white; color:black; padding:10px; border-radius:10px; margin:5px;">You are the best part of my life</div>
+        <button class="btn" onclick="showPage('page3')">Next ➔</button>
+    </div>
+
+    <!-- 3. Calendar Page -->
+    <div id="page3" class="screen">
+        <div class="calendar">
+            <p>FEBRUARY</p><h1 style="font-size: 70px; margin: 0;">14</h1>
+            <h3>Will you be my Valentine?</h3>
+            <button class="btn" onclick="showPage('page4')">YES</button>
+            <button class="btn" id="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">NO</button>
+        </div>
+    </div>
+
+    <!-- 4. Heartfelt Letter -->
+    <div id="page4" class="screen">
+        <div class="letter-box">
+            <center><img src="megha_collage.jpg" style="width: 120px; border-radius: 50%; border: 3px solid #b10000;"></center>
+            <p>To my dearest Megha,<br>Every moment spent with you feels like magic. You are the light in my life and the peace in my soul. I promise to be yours forever.</p>
+            <div class="urdu-lines">
+                Ek ehsaas Meri soch aur bus ek tum<br>Ek sawal ek majaal tumhara khayal aur bus tum<br>
+                Ek Raat ek sham tumhara Naam aur bus tum<br>Ek Dua ek Faryad tumhari yaad aur bus ek tum<br>
+                Mera junoon mera Sukoon bus tu aur bus tu
+            </div>
+            <center><button class="btn" onclick="showPage('page5')">Love Tickets 🎟️</button></center>
+        </div>
+    </div>
+
+    <!-- 5. Love Tickets -->
+    <div id="page5" class="screen">
+        <h2>Megha, Pick your Surprises!</h2>
+        <div class="tickets-grid">
+            <img src="heart_sticker.png" class="sticker" onclick="openGift('gift1')">
+            <img src="heart_sticker.png" class="sticker" onclick="openGift('gift2')">
+            <img src="heart_sticker.png" class="sticker" onclick="openGift('gift3')">
+            <img src="heart_sticker.png" class="sticker" onclick="openGift('gift4')">
+            <img src="heart_sticker.png" class="sticker" onclick="openGift('gift5')">
+            <img src="heart_sticker.png" class="sticker" onclick="openGift('gift6')">
+        </div>
+        <button class="btn" onclick="showPage('page6')" style="margin-top: 40px;">Final Surprise ➔</button>
+    </div>
+
+    <!-- 6. Final Page -->
+    <div id="page6" class="screen">
+        <div id="env-box" onclick="revealFinal()">
+            <img src="envelope.png" style="width: 280px; cursor: pointer;">
+            <p>Last surprise... Tap to open.</p>
+        </div>
+        <div id="final-kiss" style="display:none;">
+            <img src="kisses.png">
+            <h1 style="font-family: 'Dancing Script'; font-size: 45px;">I LOVE YOU FOREVER! ❤️</h1>
+        </div>
+    </div>
+
+    <!-- GIFT OVERLAYS -->
+    <div id="gift1" class="overlay"><span class="close-btn" onclick="closeGift()">×</span><h2>Our Gallery</h2><img src="m1.jpg"><img src="m2.jpg"><img src="m3.jpg"><img src="m4.jpg"><img src="m5.jpg"></div>
+    <div id="gift2" class="overlay"><span class="close-btn" onclick="closeGift()">×</span><h2>Romantic Art</h2><img src="art1.png" class="art-img"><img src="art2.png" class="art-img"><img src="art3.png" class="art-img"><img src="art4.png" class="art-img"><img src="art5.png" class="art-img"><img src="art6.png" class="art-img"><img src="art7.png" class="art-img"><br><button class="btn" onclick="nextArt()">Next Art ➔</button></div>
+    <div id="gift3" class="overlay"><span class="close-btn" onclick="closeGift()">×</span><h2>100 Reasons</h2><div class="reason-scroll" id="reasons"></div></div>
+    <div id="gift4" class="overlay"><span class="close-btn" onclick="closeGift()">×</span><h2>Favorite Person</h2><p>1. Kindest Soul<br>2. Best Smile<br>3. Understands Me<br>4. Pure Heart<br>5. My Home ❤️</p></div>
+    <div id="gift5" class="overlay"><span class="close-btn" onclick="closeGift()">×</span><div style="background:white; color:#b10000; padding:20px; border-radius:15px; margin-top:50px;">🍒 Love you Berry Much!<br>🔐 Key to my Heart<br>🧩 Love you to Pieces</div></div>
+    <div id="gift6" class="overlay"><span class="close-btn" onclick="closeGift()">×</span><h2>Your Song 🎧</h2><img src="qr_code.png" style="width: 250px;"></div>
+
+    <script>
+        function start() { document.getElementById('bgMusic').play(); showPage('page2'); }
+        function showPage(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+        function moveNo() { const b = document.getElementById('no-btn'); b.style.position = 'fixed'; b.style.left = Math.random() * (window.innerWidth - 100) + 'px'; b.style.top = Math.random() * (window.innerHeight - 100) + 'px'; }
+        function openGift(id) { document.getElementById(id).style.display = 'block'; if(id==='gift2') nextArt(); }
+        function closeGift() { document.querySelectorAll('.overlay').forEach(o => o.style.display = 'none'); artIdx=0; }
+        
+        let artIdx = 0;
+        function nextArt() { let imgs = document.querySelectorAll('.art-img'); imgs.forEach(i => i.style.display = 'none'); if(artIdx >= imgs.length) artIdx = 0; imgs[artIdx].style.display = 'block'; artIdx++; }
+        
+        const res = document.getElementById('reasons');
+        for(let i=1; i<=100; i++) { res.innerHTML += `<p>${i}. Reason for loving you #${i}</p>`; }
+        function revealFinal() { document.getElementById('env-box').style.display = 'none'; document.getElementById('final-kiss').style.display = 'block'; }
+    </script>
+</body>
+              </html>
